@@ -8,6 +8,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/expenses", require("./routes/expenseRoutes"));
 
 
 mongoose.connect(
@@ -21,6 +22,10 @@ app.use("/expenses", require("./routes/expenseRoutes"));
 
 app.get("/", (req, res) => {
   res.send("Expense Tracker Backend Running");
+});
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "OK", message: "Backend is healthy" });
 });
 
 app.listen(5000, () => {
