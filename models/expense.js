@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const Expense = require("../models/expense");
+
 
 const expenseSchema = new mongoose.Schema(
   {
