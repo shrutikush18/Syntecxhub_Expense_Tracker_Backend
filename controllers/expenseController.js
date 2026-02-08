@@ -1,4 +1,10 @@
 const Expense = require("../models/expense");
+const mongoose = require("mongoose");
+
+if (mongoose.connection.readyState !== 1) {
+  return res.status(503).json({ error: "Database not ready" });
+}
+
 
 // GET all expenses
 const getExpenses = async (req, res) => {
@@ -18,6 +24,10 @@ const addExpense = async (req, res) => {
     if (!title || !amount || !category) {
       return res.status(400).json({ message: "All fields are required" });
     }
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({ error: "Database not ready" });
+    }
+
 
     const expense = new Expense({
       title,

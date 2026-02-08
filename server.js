@@ -18,6 +18,9 @@ app.get("/health", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
+mongoose.set("bufferCommands", false);
+mongoose.set("strictQuery", false);
+
 
 // 🔥 IMPORTANT PART
 mongoose
